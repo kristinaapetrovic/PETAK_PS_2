@@ -1,0 +1,30 @@
+CREATE DATABASE petak;
+CREATE TABLE osoba(
+	jmbg INT PRIMARY KEY,
+	ime VARCHAR(20),
+	prezime VARCHAR(20)
+);
+CREATE TABLE instrument(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	naziv VARCHAR(50)
+);
+CREATE TABLE svira(
+	osoba INT,
+	instrument INT,
+	PRIMARY KEY (osoba, instrument),
+	FOREIGN KEY (osoba) REFERENCES osoba (jmbg),
+	FOREIGN KEY (instrument) REFERENCES instrument(id)
+);
+INSERT INTO osoba (jmbg, ime, prezime) VALUES (123456, 'ime1', 'prezime1');
+INSERT INTO osoba (jmbg, ime, prezime) VALUES (123457, 'ime2', 'prezime2');
+INSERT INTO osoba (jmbg, ime, prezime) VALUES (123458, 'ime3', 'prezime3');
+
+INSERT INTO instrument (naziv) VALUES ('frula');
+INSERT INTO instrument (naziv) VALUES ('gitara');
+INSERT INTO instrument (naziv) VALUES ('klavir');
+
+INSERT INTO svira (osoba, instrument) VALUES (123456,1);
+INSERT INTO svira (osoba, instrument) VALUES (123456,2);
+INSERT INTO svira (osoba, instrument) VALUES (123457,3);
+INSERT INTO svira (osoba, instrument) VALUES (123458,2);
+INSERT INTO svira (osoba, instrument) VALUES (123458,3);
